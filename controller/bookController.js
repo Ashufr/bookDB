@@ -71,6 +71,14 @@ const createMultipleBooks = async (req, res) => {
   }
 };
 
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
 const getBookViaIsbn = async (req, res) => {
   const { isbn } = req.params;
   try {
@@ -88,4 +96,4 @@ const getBookViaIsbn = async (req, res) => {
   }
 };
 
-export { createBook, createMultipleBooks, getBookViaIsbn };
+export { createBook, createMultipleBooks, getAllBooks, getBookViaIsbn };
